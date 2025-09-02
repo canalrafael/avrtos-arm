@@ -40,6 +40,8 @@ Envisioned Solution
 
 - Are you going to implement something and validate your solution experimentally? How exactly?
 
+    We are currently studying on how the vehicles performs its computational tasks and how we can integrate it with our ZF3 card, however, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems) we're going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis, by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
+
 - Are you going to model your solution to run simulations? What exactly will you simulate? How will you achieve statistical significance to make your point?
 
 ======================================================================
