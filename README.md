@@ -38,19 +38,36 @@ Problem Statement
 
 Summarize the previous paragraphs in a single, strong, concise, complete, robust statement.
 
-[Your problem statement here]
+This research aims to solve the problem of detecting and mitigating cyberattacks in real-time embedded systems with RTOS on ARM architectures. The central challenge is that existing solutions for intrusion detection are vulnerable to shared-resource contention and microarchitectural attacks like Spectre, and they often lack the robust hardware-level isolation needed for safety-critical systems. While virtualization can provide isolation, it introduces performance overhead that can compromise the deterministic behavior of an RTOS. Therefore, a gap exists for a solution that effectively combines a real-time, machine-learning-based detection model with a bare-metal hypervisor to provide both low-latency security and guaranteed performance on a single platform.
 
 ======================================================================
 Envisioned Solution
 ======================================================================
 
 - How do you think you can solve the problem modeled above?
+The project would solve the problem by implementing a hardware-level security framework that combines a bare-metal hypervisor with a machine learning (ML) model analyzing Performance Monitoring Unit (PMU) counters.
+The Role of the Hypervisor:
+  The solution hinges on using a bare-metal hypervisor, such as Bao Hypervisor, to achieve strong hardware-enforced isolation. The hypervisor would partition the processing system (PS) of the Zynq UltraScale+ MPSoC, dedicating a core to run the RTOS for critical tasks and another isolated core to run the ML-based intrusion detection system. This virtualization approach directly addresses several key challenges:
+  + Isolation of Critical Tasks: By running the RTOS in a secure, isolated domain, the hypervisor prevents a security breach in the ML model or other components from affecting the real-time, deterministic behavior of the RTOS.
+  + Mitigation of Microarchitectural Attacks: The hypervisor's isolation helps to contain and mitigate attacks like Spectre, which exploit a lack of separation between processes.
+  + Resource Contention: The hypervisor's partitioning of resources reduces the impact of shared-resource contention, which has been shown to cause significant drops in the accuracy of ML-based intrusion detection systems.
+The Role of Machine Learning and PMU Counters:
+The ML model is the core of the intrusion detection system. It would be trained to recognize the system's normal behavior using a set of carefully selected PMU counters. These counters provide a low-overhead, real-time architectural "fingerprint" of the running software.
+  + Behavioral Modeling: The ML model would be trained on data from PMU counters collected during a non-contending, "safe" execution of the RTOS tasks. This establishes a baseline of normal behavior.
+  + Real-time Detection: During operation, the model would continuously analyze incoming PMU counter data for deviations from the established normal behavior. By operating in an isolated environment, it can perform this detection without its performance being compromised by contention from other tasks.
+This comprehensive approach solves the problem by providing a solution that is not only robust against hardware and software vulnerabilities but also capable of real-time threat detection with minimal impact on the performance of the critical RTOS.
 
 - Are you going to develop a formal proof?
+The project's methodology is primarily empirical, focusing on implementation and evaluation rather than mathematical proofs. This involves building a framework on a real platform and then assessing its performance and effectiveness through a series of experiments.
+The project would:
+  + Implement a solution using a hypervisor and a machine learning model on a physical platform.
+  + Run micro-benchmarking and performance monitoring experiments to characterize the system's behavior.
+  + Measure key metrics like execution time overhead and jitter to demonstrate that the approach doesn't disrupt the temporal characteristics of critical tasks.
+  + Assess the impacts of the proposed solution on shared-resource contention and the ability of the ML model to recognize system behavior under interference.
+While formal proofs are a rigorous method for verifying system correctness, this project focuses on a practical, implementation-based approach to solving the problem.
 
 - Are you going to implement something and validate your solution experimentally? How exactly?
-
-    We are currently studying on how the vehicles performs its computational tasks and how we can integrate it with our ZF3 card, however, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems) we're going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis, by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
+We are currently studying how the vehicle performs its computational tasks and how we can integrate it with our ZF3 card. However, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems), we are going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
 
 - Are you going to model your solution to run simulations? What exactly will you simulate? How will you achieve statistical significance to make your point?
 
