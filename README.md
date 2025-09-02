@@ -80,14 +80,14 @@ Envisioned Solution
 
 - **Are you going to implement something and validate your solution experimentally? How exactly?**
 
-    We are currently studying on how the vehicles performs its computational tasks and how we can integrate it with our ZF3 card, however, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems) we're going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis, by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
+    We are currently studying on how the vehicles performs its computational tasks and how we can integrate it with our FZ3 card, however, our goal is to port a least one task, currently running in the vehicle, to the FZ3. To correctly apply the concepts of MCS (Multi Criticality Systems) we're going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis, by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
 
 - **Are you going to model your solution to run simulations? What exactly will you simulate? How will you achieve statistical significance to make your point?**
 
-    We are going to run simulations on both emulators and ZF3 card. The top reasons are listed bellow:
+    We are going to run simulations on both emulators and FZ3 card. The top reasons are listed bellow:
 
     1. Due to limited hardware access, the emulator will server as a development tool which we can test if the code implementation can correctly express our intent;
-    2. Run controlled simulations on the board, without the ZF3-vehicle integration, so that we can evaluate the exploit and countermeasures.
+    2. Run controlled simulations on the FZ3 card, initially without the FZ3-vehicle integration, so that we can evaluate the exploit and countermeasures.
 
 ======================================================================
 Hypothesis
