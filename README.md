@@ -39,9 +39,13 @@ Problem Statement
 Summarize the previous paragraphs in a single, strong, concise, complete, robust statement.
   - This research aims to solve the problem of detecting and mitigating cyberattacks in real-time embedded systems with RTOS on ARM architectures. The central challenge is that existing solutions for intrusion detection are vulnerable to shared-resource contention and microarchitectural attacks like Spectre, and they often lack the robust hardware-level isolation needed for safety-critical systems. While virtualization can provide isolation, it introduces performance overhead that can compromise the deterministic behavior of an RTOS. Therefore, a gap exists for a solution that effectively combines a real-time, machine-learning-based detection model with a bare-metal hypervisor to provide both low-latency security and guaranteed performance on a single platform.
 
+<<<<<<< HEAD
 ======================================================================
 Envisioned Solution
 ======================================================================
+=======
+## Envisioned Solution
+>>>>>>> db1f5f0 (Update README.md)
 
 - How do you think you can solve the problem modeled above?
   - The project would solve the problem by implementing a hardware-level security framework that combines a bare-metal hypervisor with a machine learning (ML) model analyzing Performance Monitoring Unit (PMU) counters.
@@ -67,8 +71,23 @@ Envisioned Solution
 
 - Are you going to implement something and validate your solution experimentally? How exactly?
   - We are currently studying how the vehicle performs its computational tasks and how we can integrate it with our ZF3 card. However, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems), we are going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
+<<<<<<< HEAD
+=======
+- **How do you think you can solve the problem modeled above?**
+>>>>>>> db1f5f0 (Update README.md)
 
-- Are you going to model your solution to run simulations? What exactly will you simulate? How will you achieve statistical significance to make your point?
+- **Are you going to develop a formal proof?**
+
+- **Are you going to implement something and validate your solution experimentally? How exactly?**
+
+    We are currently studying on how the vehicles performs its computational tasks and how we can integrate it with our ZF3 card, however, our goal is to port a least one task, currently running in the vehicle, to the ZF3. To correctly apply the concepts of MCS (Multi Criticality Systems) we're going to run two separate systems, Linux-based and RTOS, and let a hypervisor handle the resource management. Then, use this environment to validate our initial hypothesis, by testing different methods of attack to point out the vulnerability, and later apply a countermeasure.
+
+- **Are you going to model your solution to run simulations? What exactly will you simulate? How will you achieve statistical significance to make your point?**
+
+    We are going to run simulations on both emulators and ZF3 card. The top reasons are listed bellow:
+
+    1. Due to limited hardware access, the emulator will server as a development tool which we can test if the code implementation can correctly express our intent;
+    2. Run controlled simulations on the board, without the ZF3-vehicle integration, so that we can evaluate the exploit and countermeasures.
 
 ======================================================================
 Hypothesis
