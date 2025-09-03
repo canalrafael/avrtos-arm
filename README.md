@@ -115,40 +115,83 @@
 
 ## Hypothesis
 
-Revisit your problem statement, reflect deeply about your envisioned solution, and now write a strong, concise, complete, robust hypothesis that you can demonstrate (or maybe prove) at least partially.
-
-[Your hypothesis here]
+The Performance Monitor Unit (PMU) continuously monitors the system performance metrics. Under normal execution conditions, those metrics would follow a stable pattern. An attacker usually use methods that causes an abnormal system load that can be measured by the PMU. A ML-based IDS could identify this abnormal system load and classify it as malicious attack, triggering a countermeasure to mitigate its impact on the system.
 
 ## Methodology
 
 - **How are you going to demonstrate your hypothesis?**
 
+    We going to demonstrate the hypothesis in three phases:
+
+    1. Setup the FZ3 card, and explain its hardware resources, highlighting potential vulnerabilities if any;
+    2. List a number of attack methods that are applicable to the FZ3 card and select some of them to demonstrate an attack; and
+    3. Use the implemented IDS to identify the attacks.
+
 - **Which assets do you already have?**
-  - Literature:
-  - Tools, datasets, systems, algorithms, theorems, formulations by others:
-  - Previous works by the group (links to other experiments, reports, and papers):
-  - Skills:
+- Literature:
+
+    TBD
+
+- Tools, datasets, systems, algorithms, theorems, formulations by others:
+
+    TBD
+
+- Previous works by the group (links to other experiments, reports, and papers):
+
+    - [Beyond the Bermuda Triangle of Contention: IOMMU Interference in Mixed Criticality Systems](https://arxiv.org/abs/2508.19670)
+    - [On the Impacts of Shared-Resource Contention on Intrusion Detection Systems based on Performance Monitoring](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8835233)
+    - [On the Impacts of Shared-Resource Contention on Intrusion Detection Systems based on Performance Monitoring](https://ieeexplore.ieee.org/document/10551363)
+    - [A Fault Injection Framework for Real-time Multicore Embedded Systems](https://ieeexplore.ieee.org/document/9277864)
+
+- Skills:
+    - programming languages: C, C++, Python.
+    - scripting: bash, batch.
+    - markup languages: Markdown, YAML, KaTex.
+    - versioning tools: git.
+    - CPU Architecture: Arm Cortex-M.
+    - RTOS: FreeRTOS
+    - serial protocols: I2C, SPI.
 
 - **What is still missing?**
 
+    - How to use the FZ3 card: platform setup.
+    - Better understanding on how cache memories are implemented.
+    - Better understanding on how MMU, IOMMU are implemented.
+    - Better understanding of Arm Cortex-A and Cortex-R architectures. 
+
 - **How will you tackle the missing elements?**
+
+    - Arm CPU architecture documentation.
+    - Check in the literature.
+    - Search for more related works.
+    - Ask to professor, assistant professor, or graduate that have a better understand on those topics.
 
 - **What resources do I need?**
 
+    TBD
+
 - **Who can help me and how?**
 
+    TBD
+
 - **How long will it take?**
+
+    TBD
 
 ## Schedule
 
 Plan your work in weeks and keep a progress record. (x = work, D# = deadline/delivery)
 
-Task    | W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8
---------|----|----|----|----|----|----|----|----
-Task 1  | x  | x  | D1 |    |    |    |    |
-Task 2  |    |    | x  | x  | D2 |    |    |
-Task 3  |    |    |    |    | x  | x  | D3 |
-Task 4  |    |    |    |    |    |    | x  | D4
+Task|Sub task|W1|W2|W3|W4|W5|W6|W7|W8|W9|W10|W11|W12|W13|W14|W15|W16
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Scope||x|x|x|D1|||||||||||||
+||Discuss Project Scope|x|x|x|D1|||||||||||||
+||Create Repo|||x|D1|||||||||||||
+||Search Related Work|||x|D1|||||||||||||
+||Write Project Plan|||x|D1|||||||||||||
+|Design|||||x|x|x|x|x|x|D2|||||||
+|Integration|||||||||||x|x|x|D3||||
+|Validation||||||||||||||x|x|x|D4|
 
 ## Progress Tracking
 
