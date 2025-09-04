@@ -138,45 +138,42 @@ The Performance Monitor Unit (PMU) continuously monitors the system performance 
 - Tools, datasets, systems, algorithms, theorems, formulations by others:
 
     - Bao Hypervisor with dual guest (Linux + FreeRTOS).
-    - 
 
 - Previous works by the group (links to other experiments, reports, and papers):
 
-    MYS‑ZU3EG‑8E4D‑EDGE‑K2 v11 or FZ3 Deep Learning Accelerator Card
-    - Xilinx Zynq UltraScale+ ZU3EG MPSoC;
-    - Application Processing Unit (APU): ARM Cortex-A53 up to 1.2GHz:
-        - Quad-Core ARMv8-A Architecture;
-        - 32 KB each Private L1 Instruction and Data Cache per core;
-        - 1 MB Shared L2 Cache.
-    - Real-Time Processing Unit (RPU): ARM Cortex-R5 up to 600MHz:
-        - Dual-Core ARMv7-R Architecture;
-        - 32 KB combined Private Instruction and Data Cache per core;
-        - 128 KB Tightly Coupled Memory (TCM) per core.
-    - Programmable Logic (PL);
-    - ARM Mali-400 MP2 GPU (built into the Zynq UltraScale+ MPSoC) up to 667MHz;
-    - Memory:
-        - OCM: 256 KB On-Chip Memory (PS);
-        - PS DRAM: 4 GB DDR4 (64-bit) up to 2400 MHz connected to PS;
-        - PL BRAM: Programmable Logic Block RAM available inside the FPGA fabric;
-        - PL DRAM: not present in base model.
-
-    - Connectivity:
-        - Two 2.54mm pitch 2x20-pin IO Expansion Interfaces;
-        - 2 x USB2.0 Host;
-        - 1 x CAN;
-        - 1 x RS485;
-        - 4 x PS_MIO, PL_IO (12 pairs x HD_IO, 8 pairs x HP_IO).
-
-    - Storage:
-        - eMMC Flash: 8 GB onboard nonvolatile;
-        - QSPI Flash: 32 MB NOR Flash;
-        - EEPROM: 32 KB for configuration and user data;
-        - TF card interface.
-     
-    - Block Diagram:
-    ![Simplified Block Diagram of the UltraScale+ MPSoC (ZCU102) Adapted from:: Bansal, Ayoosh, et al. "Evaluating memory subsystem of configurable heterogeneous MPSoC." Proceedings of the Operating Systems Platforms for Embedded Real-Time applications (2018).](img/simplifiedBD.JPG)
-    
-    ![XCZU3EG resources. Source: FZ3 Deep Learning Accelerator Card Hardware Manual Version V1.0 (https://www.myirtech.com/download/ZU3EG/FZ3_Deep_Learning_Accelerator_Card_Hardware_Manual.pdf)](img/XCZU3EGresources.JPG)
+    - Architecture Description: MYS‑ZU3EG‑8E4D‑EDGE‑K2 v11 or FZ3 Deep Learning Accelerator Card
+        - Xilinx Zynq UltraScale+ ZU3EG MPSoC;
+        - Application Processing Unit (APU): ARM Cortex-A53 up to 1.2GHz:
+            - Quad-Core ARMv8-A Architecture;
+            - 32 KB each Private L1 Instruction and Data Cache per core;
+            - 1 MB Shared L2 Cache.
+        - Real-Time Processing Unit (RPU): ARM Cortex-R5 up to 600MHz:
+            - Dual-Core ARMv7-R Architecture;
+            - 32 KB combined Private Instruction and Data Cache per core;
+            - 128 KB Tightly Coupled Memory (TCM) per core.
+        - Programmable Logic (PL);
+        - ARM Mali-400 MP2 GPU (built into the Zynq UltraScale+ MPSoC) up to 667MHz;
+        - Memory:
+            - OCM: 256 KB On-Chip Memory (PS);
+            - PS DRAM: 4 GB DDR4 (64-bit) up to 2400 MHz connected to PS;
+            - PL BRAM: Programmable Logic Block RAM available inside the FPGA fabric;
+            - PL DRAM: not present in base model.
+        - Connectivity:
+            - Two 2.54mm pitch 2x20-pin IO Expansion Interfaces;
+            - 2 x USB2.0 Host;
+            - 1 x CAN;
+            - 1 x RS485;
+            - 4 x PS_MIO, PL_IO (12 pairs x HD_IO, 8 pairs x HP_IO).
+        - Storage:
+            - eMMC Flash: 8 GB onboard nonvolatile;
+            - QSPI Flash: 32 MB NOR Flash;
+            - EEPROM: 32 KB for configuration and user data;
+            - TF card interface.
+        - Block Diagram:
+            - Simplified Block Diagram of the UltraScale+ MPSoC (ZCU102) Adapted from: Bansal, Ayoosh, et al. "Evaluating memory subsystem of configurable heterogeneous MPSoC." Proceedings of the Operating Systems Platforms for Embedded Real-Time applications (2018).
+            - ![Simplified Block Diagram of the UltraScale+ MPSoC (ZCU102) Adapted from: Bansal, Ayoosh, et al. "Evaluating memory subsystem of configurable heterogeneous MPSoC." Proceedings of the Operating Systems Platforms for Embedded Real-Time applications (2018).](img/simplifiedBD.jpg)
+            - XCZU3EG resources. Source: FZ3 Deep Learning Accelerator Card Hardware Manual Version V1.0 (https://www.myirtech.com/download/ZU3EG/FZ3_Deep_Learning_Accelerator_Card_Hardware_Manual.pdf)
+            - ![XCZU3EG resources. Source: FZ3 Deep Learning Accelerator Card Hardware Manual Version V1.0 (https://www.myirtech.com/download/ZU3EG/FZ3_Deep_Learning_Accelerator_Card_Hardware_Manual.pdf)](img/XCZU3EGresources.jpg)
 
 - Skills:
     - programming languages: C, C++, Python.
