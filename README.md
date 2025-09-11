@@ -183,7 +183,7 @@ The Performance Monitor Unit (PMU) continuously monitors the system performance 
     - CPU Architecture: Arm Cortex-M.
     - RTOS: FreeRTOS
     - serial protocols: I2C, SPI.
-    - CI/CD
+    - CI
 
 - **What is still missing?**
 
