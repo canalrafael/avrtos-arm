@@ -243,6 +243,8 @@ dd/mm/yy        | xD   | Single-line description of each task finished this week
 dd/mm/yy        | xP   | Single-line description of tasks that could not be accomplished with reasons.
 dd/mm/yy        | xH   | Expected Time Required: [details on help needed].
 
+Project tracking using [Jira Boards](https://lucastaba3.atlassian.net/jira/software/projects/AVRTOS/boards/34?sprintStarted=true&atlOrigin=eyJpIjoiNGJmN2VmNzJiZGM5NDNhMmI2ZDJlYWNjYjlkNWU3NmEiLCJwIjoiaiJ9)
+
 ## Reporting
 
 Create a document in Overleaf to collect results as you produce them. Remember your hypothesis: things not directly related, even if fundamental, do not usually get reported to avoid zig-zags.
