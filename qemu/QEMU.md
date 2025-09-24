@@ -53,6 +53,12 @@ From the [documentation](https://www.qemu.org/docs/master/system/introduction.ht
 
 TODO
 
+## Setup
+
+We built QEMU `stable-10.1` from source. The build binary will be used for all emulator related work/activity.
+
+Binary for Linux **x86_64** systems available [here](https://drive.google.com/file/d/1IexCAeof9-sgCEsJKSTxX-tH9CjBQJfn/view?usp=drive_link).
+
 ## Abbreviations
 |Abbreviation|Extended Name|
 |-|-|
