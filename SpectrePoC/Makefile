@@ -1,5 +1,5 @@
 CFLAGS += -std=c99 -O0 -static
-CC=$(realpath .)/../../arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
+CC=$(realpath .)/../aarch64/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
 
 PROGRAM = spectre.out
 SOURCE  = spectre.c
