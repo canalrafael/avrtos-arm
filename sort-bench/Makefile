@@ -4,7 +4,7 @@ CC=$(realpath .)/../aarch64/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linu
 ARCH := armv8-a
 
 ENABLE_TIMER := 0
-COMMONFLAGS := -O3 -g -march=$(ARCH) -DENABLE_TIMER=$(ENABLE_TIMER) -Wall -Wextra -Wno-unused-parameter
+COMMONFLAGS := -O3 -g -march=$(ARCH) -DENABLE_TIMER=$(ENABLE_TIMER) -Wall -Wextra -Wno-unused-parameter -static
 CXXFLAGS    := $(COMMONFLAGS) $(EFLAGS) -std=c++11
 CFLAGS      := $(COMMONFLAGS) $(EFLAGS) -std=c99 -Wno-missing-field-initializers
 

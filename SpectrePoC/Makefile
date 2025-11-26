@@ -1,4 +1,4 @@
-CFLAGS += -std=c99 -O0 -static
+CFLAGS += -g3 -std=c99 -O0 -static
 CC=$(realpath .)/../aarch64/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
 
 PROGRAM = spectre.out

