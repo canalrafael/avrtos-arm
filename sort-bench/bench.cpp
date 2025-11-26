@@ -95,7 +95,6 @@ int main(int argc, char** argv) {
     {"radix4", radix_sort4},
     {"radix5", radix_sort5},
     {"radix6", radix_sort6},
-    {"radix7", radix_sort7},
     {"qsort-recompiled", qsort_recompiled},
   }, selected_algos;
 
