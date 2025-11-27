@@ -18,6 +18,11 @@
 #
 unexport MAKEFLAGS
 
+# export CC=arm-linux-gnueabihf-gcc
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# CXX=$(realpath .)/../aarch64/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-g++
+# CC=$(realpath .)/../aarch64/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc
+
 #
 # Do a parallel build with multiple jobs, based on the number of CPUs online
 # in this system: 'make -j8' on a 8-CPU system, etc.
